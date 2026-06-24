@@ -14,8 +14,11 @@
             "role": "Developer"
         }
     ],
-    "platform": {
-        "php": "8.4.99"
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "8.4.99"
+        }
     },
     "require": {
         "php": "~8.4.1 || ~8.5.0"
@@ -41,9 +44,6 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "config": {
-        "sort-packages": true
-    },
     "scripts": {
         "check-all": [
             "@cs-check",

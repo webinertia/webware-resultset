@@ -25,7 +25,7 @@ composer require webware/webware-resultset
 
 ## Requirements
 
-- PHP 8.2, 8.3, 8.4, or 8.5
+- PHP 8.4, or 8.5
 - [php-db/phpdb](https://github.com/php-db/phpdb) ^0.6.0 (dev dependency — provides the base `AbstractResultSet`)
 
 ## Components
