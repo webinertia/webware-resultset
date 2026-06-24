@@ -59,7 +59,7 @@ final class WithRowDataResultSet extends AbstractResultSet
 A concrete, `final` ResultSet that overrides three methods from `AbstractResultSet`:
 
 | Method | Behavior |
-|---|---|
+| --- | --- |
 | `current(): ?WithRowDataPrototypeInterface` | Calls `parent::current()`. If the result is an array, passes it to `getRowPrototype()->withRowData($data)` and returns the row object produced by the prototype. Returns `null` otherwise. |
 | `setRowPrototype(...)` | Accepts only `WithRowDataPrototypeInterface` instances. Throws `InvalidArgumentException` if given a plain `ArrayObject` or `RowPrototypeInterface`. |
 | `getRowPrototype()` | Returns the prototype with narrowed type `WithRowDataPrototypeInterface` (instead of `?object`). |
