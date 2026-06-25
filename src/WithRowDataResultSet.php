@@ -39,11 +39,13 @@ final class WithRowDataResultSet extends AbstractResultSet
         return null;
     }
 
+    #[Override]
+    public function getRowPrototype(): WithRowDataPrototypeInterface
+    {
+        return $this->rowPrototype;
+    }
+
     /**
-     * @phpstan-param ArrayObject<int|string, mixed>
-     *      |RowPrototypeInterface
-     *      |WithRowDataPrototypeInterface $rowPrototype
-     *
      * @throws InvalidArgumentException
      */
     #[Override]
@@ -57,11 +59,5 @@ final class WithRowDataResultSet extends AbstractResultSet
         $this->rowPrototype = $rowPrototype;
 
         return $this;
-    }
-
-    #[Override]
-    public function getRowPrototype(): WithRowDataPrototypeInterface
-    {
-        return $this->rowPrototype;
     }
 }

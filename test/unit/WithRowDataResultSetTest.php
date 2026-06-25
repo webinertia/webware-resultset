@@ -34,34 +34,9 @@ final class WithRowDataResultSetTest extends TestCase
 {
     private WithRowDataPrototypeInterface $rowPrototype;
 
-    #[\Override]
-    protected function setUp(): void
-    {
-        $this->rowPrototype = $this->createStub(WithRowDataPrototypeInterface::class);
-    }
-
-    public function testGetRowPrototypeReturnsPrototypePassedToConstructor(): void
-    {
-        $resultSet = new WithRowDataResultSet($this->rowPrototype);
-
-        static::assertSame($this->rowPrototype, $resultSet->getRowPrototype());
-    }
-
-    public function testCurrentReturnsWithRowDataWhenParentReturnsArray(): void
-    {
-        $data = ['id' => 1, 'name' => 'test'];
-        $prototype = $this->createStub(WithRowDataPrototypeInterface::class);
-        $prototype->method('withRowData')->willReturn($prototype);
-
-        $resultSet = new WithRowDataResultSet($prototype);
-        $resultSet->initialize([$data]);
-
-        static::assertSame($prototype, $resultSet->current());
-    }
-
     public function testCurrentReturnsNullWhenParentReturnsNonArray(): void
     {
-        $prototype = $this->createStub(WithRowDataPrototypeInterface::class);
+        $prototype     = $this->createStub(WithRowDataPrototypeInterface::class);
         $nonArrayValue = new stdClass();
 
         $iterator = $this->createStub(Iterator::class);
@@ -75,9 +50,28 @@ final class WithRowDataResultSetTest extends TestCase
         static::assertNull($resultSet->current());
     }
 
-    public function testSetRowPrototypeAcceptsWithRowDataPrototypeInterface(): void
+    public function testCurrentReturnsWithRowDataWhenParentReturnsArray(): void
+    {
+        $data      = ['id' => 1, 'name' => 'test'];
+        $prototype = $this->createStub(WithRowDataPrototypeInterface::class);
+        $prototype->method('withRowData')->willReturn($prototype);
+
+        $resultSet = new WithRowDataResultSet($prototype);
+        $resultSet->initialize([$data]);
+
+        static::assertSame($prototype, $resultSet->current());
+    }
+
+    public function testGetRowPrototypeReturnsPrototypePassedToConstructor(): void
     {
         $resultSet = new WithRowDataResultSet($this->rowPrototype);
+
+        static::assertSame($this->rowPrototype, $resultSet->getRowPrototype());
+    }
+
+    public function testSetRowPrototypeAcceptsWithRowDataPrototypeInterface(): void
+    {
+        $resultSet    = new WithRowDataResultSet($this->rowPrototype);
         $newPrototype = $this->createStub(WithRowDataPrototypeInterface::class);
 
         $result = $resultSet->setRowPrototype($newPrototype);
@@ -100,7 +94,7 @@ final class WithRowDataResultSetTest extends TestCase
 
     public function testSetRowPrototypeThrowsExceptionForPlainRowPrototypeInterface(): void
     {
-        $resultSet = new WithRowDataResultSet($this->rowPrototype);
+        $resultSet      = new WithRowDataResultSet($this->rowPrototype);
         $plainPrototype = $this->createStub(RowPrototypeInterface::class);
 
         $this->expectException(InvalidArgumentException::class);
@@ -109,5 +103,11 @@ final class WithRowDataResultSetTest extends TestCase
         );
 
         $resultSet->setRowPrototype($plainPrototype);
+    }
+
+    #[\Override]
+    protected function setUp(): void
+    {
+        $this->rowPrototype = $this->createStub(WithRowDataPrototypeInterface::class);
     }
 }
