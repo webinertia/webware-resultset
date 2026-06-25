@@ -1,6 +1,7 @@
 # webware-resultset
 
-[![PHP Version](https://img.shields.io/badge/php-~8.2%20%7C%7C%20~8.3%20%7C%7C%20~8.4%20%7C%7C%20~8.5-blue)](https://www.php.net/)
+[![PHP Version](https://img.shields.io/badge/php-~8.4%20%7C%7C%20~8.5-blue)](https://www.php.net/)
+[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](phpstan.neon.dist)
 [![License](https://img.shields.io/badge/license-BSD--3--Clause-green)](LICENSE)
 
 A ResultSet implementation for [PhpDb](https://github.com/php-db/phpdb) that delegates row object creation to the prototype's `withRowData()` method.
@@ -25,7 +26,6 @@ composer require webware/webware-resultset
 
 ## Requirements
 
-- PHP 8.4, or 8.5
 - [php-db/phpdb](https://github.com/php-db/phpdb) ^0.6.0 (dev dependency — provides the base `AbstractResultSet`)
 
 ## Components
