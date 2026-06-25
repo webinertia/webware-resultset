@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "php-db/phpdb": "^0.6.0",
-        "phpunit/phpunit": "^13.2.0",
+        "phpunit/phpunit": "^11.5.55",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {
