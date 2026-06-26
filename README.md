@@ -1,7 +1,7 @@
 # webware-resultset
 
 [![PHP Version](https://img.shields.io/badge/php-~8.4%20%7C%7C%20~8.5-blue)](https://www.php.net/)
-[![PHPStan](https://img.shields.io/badge/PHPStan-level%2010-brightgreen)](phpstan.neon.dist)
+[![Mago](https://img.shields.io/badge/Mago-strict-brightgreen)](mago.toml)
 [![License](https://img.shields.io/badge/license-BSD--3--Clause-green)](LICENSE)
 
 A ResultSet implementation for [PhpDb](https://github.com/php-db/phpdb) that delegates row object creation to the prototype's `withRowData()` method.
