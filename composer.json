@@ -18,7 +18,8 @@
         "sort-packages": true
     },
     "require": {
-        "php": "~8.3.0 || ~8.4.1 || ~8.5.0"
+        "php": "~8.3.0 || ~8.4.1 || ~8.5.0",
+        "webmozart/assert": "^2.4.1"
     },
     "require-dev": {
         "php-db/phpdb": "^0.6.0",

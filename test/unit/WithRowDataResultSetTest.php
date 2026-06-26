@@ -34,6 +34,13 @@ final class WithRowDataResultSetTest extends TestCase
 {
     private WithRowDataPrototypeInterface $rowPrototype;
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \PHPUnit\Framework\InvalidArgumentException
+     * @throws \PHPUnit\Event\NoPreviousThrowableException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \Exception
+     */
     public function testCurrentReturnsNullWhenParentReturnsNonArray(): void
     {
         $prototype     = $this->createStub(WithRowDataPrototypeInterface::class);
@@ -50,6 +57,13 @@ final class WithRowDataResultSetTest extends TestCase
         static::assertNull($resultSet->current());
     }
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \PHPUnit\Framework\InvalidArgumentException
+     * @throws \PHPUnit\Event\NoPreviousThrowableException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \Exception
+     */
     public function testCurrentReturnsWithRowDataWhenParentReturnsArray(): void
     {
         $data      = ['id' => 1, 'name' => 'test'];
@@ -62,6 +76,9 @@ final class WithRowDataResultSetTest extends TestCase
         static::assertSame($prototype, $resultSet->current());
     }
 
+    /**
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
     public function testGetRowPrototypeReturnsPrototypePassedToConstructor(): void
     {
         $resultSet = new WithRowDataResultSet($this->rowPrototype);
@@ -69,6 +86,12 @@ final class WithRowDataResultSetTest extends TestCase
         static::assertSame($this->rowPrototype, $resultSet->getRowPrototype());
     }
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \PHPUnit\Framework\InvalidArgumentException
+     * @throws \PHPUnit\Event\NoPreviousThrowableException
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     */
     public function testSetRowPrototypeAcceptsWithRowDataPrototypeInterface(): void
     {
         $resultSet    = new WithRowDataResultSet($this->rowPrototype);
@@ -92,6 +115,11 @@ final class WithRowDataResultSetTest extends TestCase
         $resultSet->setRowPrototype(new ArrayObject());
     }
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \PHPUnit\Event\NoPreviousThrowableException
+     * @throws \PHPUnit\Framework\InvalidArgumentException
+     */
     public function testSetRowPrototypeThrowsExceptionForPlainRowPrototypeInterface(): void
     {
         $resultSet      = new WithRowDataResultSet($this->rowPrototype);
@@ -105,6 +133,11 @@ final class WithRowDataResultSetTest extends TestCase
         $resultSet->setRowPrototype($plainPrototype);
     }
 
+    /**
+     * @throws \PHPUnit\Framework\MockObject\Exception
+     * @throws \PHPUnit\Framework\InvalidArgumentException
+     * @throws \PHPUnit\Event\NoPreviousThrowableException
+     */
     #[\Override]
     protected function setUp(): void
     {

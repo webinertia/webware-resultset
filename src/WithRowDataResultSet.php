@@ -18,8 +18,8 @@ use ArrayObject;
 use InvalidArgumentException;
 use Override;
 use PhpDb\ResultSet\AbstractResultSet;
-use PhpDb\ResultSet\ResultSetInterface;
 use PhpDb\ResultSet\RowPrototypeInterface;
+use Webmozart\Assert\Assert;
 
 final class WithRowDataResultSet extends AbstractResultSet
 {
@@ -27,13 +27,22 @@ final class WithRowDataResultSet extends AbstractResultSet
         private WithRowDataPrototypeInterface $rowPrototype,
     ) {}
 
+    /**
+     * @return null|WithRowDataPrototypeInterface
+     */
     #[Override]
     public function current(): ?WithRowDataPrototypeInterface
     {
         $data = parent::current();
 
         if (is_array($data)) {
-            return $this->getRowPrototype()->withRowData($data);
+            $prototype = $this->getRowPrototype();
+            Assert::isInstanceOf(
+                $prototype,
+                WithRowDataPrototypeInterface::class,
+                'Row prototype must implement ' . WithRowDataPrototypeInterface::class,
+            );
+            return $prototype->withRowData($data);
         }
 
         return null;
@@ -51,11 +60,13 @@ final class WithRowDataResultSet extends AbstractResultSet
     #[Override]
     public function setRowPrototype(
         ArrayObject|RowPrototypeInterface|WithRowDataPrototypeInterface $rowPrototype,
-    ): ResultSetInterface {
-        if (! $rowPrototype instanceof WithRowDataPrototypeInterface) {
-            throw new InvalidArgumentException('Row prototype must implement ' . WithRowDataPrototypeInterface::class);
-        }
-
+    ): static {
+        Assert::isInstanceOf(
+            $rowPrototype,
+            WithRowDataPrototypeInterface::class,
+            'Row prototype must implement ' . WithRowDataPrototypeInterface::class,
+        );
+        // @mago-expect analysis:invalid-property-assignment-value
         $this->rowPrototype = $rowPrototype;
 
         return $this;
