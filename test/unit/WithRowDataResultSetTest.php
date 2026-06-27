@@ -17,15 +17,15 @@ namespace Webware\ResultSetTest;
 use ArrayObject;
 use InvalidArgumentException;
 use Iterator;
+use Override;
 use PhpDb\ResultSet\RowPrototypeInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Webware\ResultSet\WithRowDataPrototypeInterface;
 use Webware\ResultSet\WithRowDataResultSet;
-use Override;
-use PHPUnit\Framework\Attributes\Test;
 
 #[CoversClass(WithRowDataResultSet::class)]
 #[CoversMethod(WithRowDataResultSet::class, '__construct')]
