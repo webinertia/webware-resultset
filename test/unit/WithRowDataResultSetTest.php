@@ -17,9 +17,11 @@ namespace Webware\ResultSetTest;
 use ArrayObject;
 use InvalidArgumentException;
 use Iterator;
+use Override;
 use PhpDb\ResultSet\RowPrototypeInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use Webware\ResultSet\WithRowDataPrototypeInterface;
@@ -41,7 +43,8 @@ final class WithRowDataResultSetTest extends TestCase
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \Exception
      */
-    public function testCurrentReturnsNullWhenParentReturnsNonArray(): void
+    #[Test]
+    public function currentReturnsNullWhenParentReturnsNonArray(): void
     {
         $prototype     = $this->createStub(WithRowDataPrototypeInterface::class);
         $nonArrayValue = new stdClass();
@@ -64,7 +67,8 @@ final class WithRowDataResultSetTest extends TestCase
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \Exception
      */
-    public function testCurrentReturnsWithRowDataWhenParentReturnsArray(): void
+    #[Test]
+    public function currentReturnsWithRowDataWhenParentReturnsArray(): void
     {
         $data      = ['id' => 1, 'name' => 'test'];
         $prototype = $this->createStub(WithRowDataPrototypeInterface::class);
@@ -79,7 +83,8 @@ final class WithRowDataResultSetTest extends TestCase
     /**
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testGetRowPrototypeReturnsPrototypePassedToConstructor(): void
+    #[Test]
+    public function getRowPrototypeReturnsPrototypePassedToConstructor(): void
     {
         $resultSet = new WithRowDataResultSet($this->rowPrototype);
 
@@ -92,7 +97,8 @@ final class WithRowDataResultSetTest extends TestCase
      * @throws \PHPUnit\Event\NoPreviousThrowableException
      * @throws \PHPUnit\Framework\ExpectationFailedException
      */
-    public function testSetRowPrototypeAcceptsWithRowDataPrototypeInterface(): void
+    #[Test]
+    public function setRowPrototypeAcceptsWithRowDataPrototypeInterface(): void
     {
         $resultSet    = new WithRowDataResultSet($this->rowPrototype);
         $newPrototype = $this->createStub(WithRowDataPrototypeInterface::class);
@@ -103,7 +109,8 @@ final class WithRowDataResultSetTest extends TestCase
         static::assertSame($resultSet, $result);
     }
 
-    public function testSetRowPrototypeThrowsExceptionForArrayObject(): void
+    #[Test]
+    public function setRowPrototypeThrowsExceptionForArrayObject(): void
     {
         $resultSet = new WithRowDataResultSet($this->rowPrototype);
 
@@ -120,7 +127,8 @@ final class WithRowDataResultSetTest extends TestCase
      * @throws \PHPUnit\Event\NoPreviousThrowableException
      * @throws \PHPUnit\Framework\InvalidArgumentException
      */
-    public function testSetRowPrototypeThrowsExceptionForPlainRowPrototypeInterface(): void
+    #[Test]
+    public function setRowPrototypeThrowsExceptionForPlainRowPrototypeInterface(): void
     {
         $resultSet      = new WithRowDataResultSet($this->rowPrototype);
         $plainPrototype = $this->createStub(RowPrototypeInterface::class);
@@ -138,7 +146,7 @@ final class WithRowDataResultSetTest extends TestCase
      * @throws \PHPUnit\Framework\InvalidArgumentException
      * @throws \PHPUnit\Event\NoPreviousThrowableException
      */
-    #[\Override]
+    #[Override]
     protected function setUp(): void
     {
         $this->rowPrototype = $this->createStub(WithRowDataPrototypeInterface::class);
