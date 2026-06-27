@@ -93,7 +93,7 @@ no-fully-qualified-global-constant = { enabled = true, level = "error" }
 no-fully-qualified-global-function = { enabled = true, level = "error" }
 property-name = { enabled = true, level = "error" }
 trait-name = { level = "error" }
-variable-name = { enabled = true, level = "error", either = false }
+variable-name = { enabled = true, level = "error", camel = true, either = false }
 
 # Maintainability
 no-goto = { level = "error" }

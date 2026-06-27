@@ -21,6 +21,8 @@ use PhpDb\ResultSet\AbstractResultSet;
 use PhpDb\ResultSet\RowPrototypeInterface;
 use Webmozart\Assert\Assert;
 
+use function is_array;
+
 final class WithRowDataResultSet extends AbstractResultSet
 {
     public function __construct(
