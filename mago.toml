@@ -36,16 +36,129 @@ preserve-breaking-binary-expression = true
 integrations = ["laminas", "phpunit"]
 
 [linter.rules]
-ambiguous-function-call = { enabled = false }
 literal-named-argument = { enabled = false }
-halstead = { effort-threshold = 7000 }
+halstead = { effort-threshold = 7000, level = "error" }
+# Clarity
+no-negated-ternary = { enabled = true, level = "error" }
+no-short-bool-cast = { enabled = true, level = "error" }
+
+# Best Practice rules
+no-inline = { enabled = true }
+combine-consecutive-issets = { enabled = true, level = "error" }
+loop-does-not-iterate = { enabled = true, level = "error" }
+no-array-accumulation-in-loop = { enabled = true, level = "error" }
+no-ini-set = { enabled = true, level = "error" }
+no-literal-namespace-string = { enabled = true, level = "error" }
+no-parameter-shadowing = { enabled = true, level = "error" }
+no-side-effects-with-declarations = { enabled = true, level = "error" }
+no-sprintf-concat = { enabled = true, level = "error" }
+prefer-array-spread = { enabled = true, level = "error" }
+prefer-explode-over-preg-split = { enabled = true, level = "error" }
+prefer-first-class-callable = { enabled = true, level = "error", check-functions = true }
+prefer-test-attribute = { enabled = true, level = "error" }
+require-namespace = { enabled = true, level = "error" }
+single-class-per-file = { enabled = true, level = "error" }
+prefer-while-loop = { enabled = true, level = "error" }
+prefer-arrow-function = { enabled = true, level = "error" }
+prefer-early-continue = { enabled = true, level = "error" }
+prefer-pre-increment = { enabled = true, level = "error" }
+prefer-self-return-type = { enabled = true, level = "error" }
+prefer-static-closure = { enabled = true, level = "error" }
+sorted-integer-keys = { enabled = true, level = "error" }
+use-compound-assignment = { enabled = true, level = "error" }
+yoda-conditions = { enabled = true, level = "error"}
+
+# Consistency
+file-name = { enabled = true, check-functions = true }
+no-hash-comment = { level = "error" }
+array-style = { enabled = true, level = "error" }
+block-statement = { level = "error" }
+braced-string-interpolation = { level = "error" }
+no-alias-function = { level = "error" }
+no-php-tag-terminator = { level = "error" }
+no-trailing-space = { level = "error" }
+string-style = { enabled = true, level = "error" }
+ambiguous-constant-access = { enabled = true, level = "error" }
+ambiguous-function-call = { enabled = true, level = "error" }
+class-name = { level = "error" }
+constant-name = { level = "error" }
+enum-name = { level = "error" }
+function-name = { level = "error", camel = true }
+interface-name = { level = "error", psr = true }
+lowercase-keyword = { level = "error" }
+lowercase-type-hint = { level = "error" }
+method-name = { enabled = true, level = "error" }
+no-fully-qualified-global-class-like = { enabled = true, level = "error" }
+no-fully-qualified-global-constant = { enabled = true, level = "error" }
+no-fully-qualified-global-function = { enabled = true, level = "error" }
+property-name = { enabled = true, level = "error" }
+trait-name = { level = "error" }
+variable-name = { enabled = true, level = "error", either = false }
+
+# Maintainability
+no-goto = { level = "error" }
+no-boolean-flag-parameter = { level = "warning" }
+no-else-clause = { level = "warning" }
+
+# Redundancy
+inline-variable-return = { level = "error" }
+no-iterator-to-array-in-foreach = { enabled = true, level = "error" }
+no-redundant-literal-return = { level = "error" }
+no-redundant-use = { level = "error" }
+no-self-assignment = { level = "error" }
+no-empty-loop = { level = "error" }
+no-is-null = {enabled = true, level = "error" }
+constant-condition = { level = "error" }
+no-closing-tag = { level = "error" }
+no-noop = { level = "error" }
+no-null-property-init = { enabled = true, level = "error" }
+no-protected-in-final = { level = "error" }
+no-redundant-binary-string-prefix = { level = "error" }
+no-redundant-block = { level = "error" }
+no-redundant-continue = { level = "error" }
+no-redundant-else = { enabled = true, level = "error" }
+no-redundant-file = { level = "error" }
+no-redundant-final = { level = "error" }
+no-redundant-isset = { level = "error" }
+no-redundant-math = { level = "error" }
+no-redundant-method-override = { level = "error" }
+no-redundant-nullsafe = { level = "error" }
+no-redundant-parentheses = { level = "error" }
+no-redundant-readonly = { level = "error" }
+no-redundant-string-concat = { level = "error" }
+no-redundant-write-visibility = { level = "error" }
+no-redundant-yield-from = { level = "error" }
+no-empty-comment = { level = "warning" }
+
+# Security
+no-short-opening-tag = { level = "error" }
+require-preg-quote-delimiter = { level = "error" }
+no-debug-symbols = { level = "error" }
+
+# Correctness
+assert-description = { level = "error" }
+identity-comparison = { level = "error" }
+no-assign-in-argument = { enabled = true, level = "error" }
+no-assign-in-condition = { level = "error" }
+no-dead-store = { enabled = true, level = "error" }
+no-empty-catch-clause = { level = "error" }
+no-redundant-variable = { enabled = true, level = "error" }
+no-unused-closure-capture = {enabled = true, level = "error" }
+no-unused-global = { enabled = true, level = "error" }
+no-unused-static = { enabled = true, level = "error" }
+strict-assertions = { level = "error" }
+strict-behavior = { enabled = true, level = "error"}
+strict-types = { level = "error" }
+switch-continue-to-break = { enabled = true, level = "error" }
+invalid-open-tag = { level = "error" }
 
 [analyzer]
-plugins = []
+plugins = ["psr-container"]
 find-unused-definitions = true
 find-unused-expressions = true
 analyze-dead-code = true
 memoize-properties = true
+check-property-initialization = true
 check-throws = false
 unchecked-exceptions = ["Error", "LogicException"]
 unchecked-exception-classes = []
@@ -57,3 +170,7 @@ allow-array-truthy-operand = false
 no-boolean-literal-comparison = false
 check-missing-type-hints = true
 register-super-globals = false
+
+class-initializers = [
+    "PHPUnit\\Framework\\TestCase::setUp"
+]
