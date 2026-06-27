@@ -48,11 +48,10 @@ jobs:
         if: matrix.dependencies == 'latest'
         run: composer update $COMPOSER_FLAGS
 
-      # Override the php-version in mago.toml to match the matrix PHP version
-      # so that syntax-level checks are accurate for each version.
+      # Set the Mago PHP version via env var so it overrides mago.toml
+      # for each matrix PHP version without mutating the config file.
       - name: Pin Mago PHP version
-        run: |
-          sed -i 's/^php-version = .*/php-version = "${{ matrix.php }}"/' mago.toml
+        run: echo "MAGO_PHP_VERSION=${{ matrix.php }}" >> "$GITHUB_ENV"
 
       - name: Check formatting
         run: mago format --check
